@@ -4,25 +4,22 @@ namespace App\Models;
 
 use Faker\Factory as FakerFactory;
 
-
-class User
+class Template
 {
     public $id;
-    public $firstname;
-    public $lastname;
-    public $email;
+    public $subject;
+    public $content;
 
     public function __construct(array $attributes = [])
     {
         $faker = FakerFactory::create();
 
         $this->id = $attributes['id'] ?? $faker->randomNumber();
-        $this->firstname = $attributes['firstname'] ?? $faker->firstName;
-        $this->lastname = $attributes['lastname'] ?? $faker->lastName;
-        $this->email = $attributes['email'] ?? $faker->email;
+        $this->subject = $attributes['subject'] ?? $faker->sentence;
+        $this->content = $attributes['content'] ?? $faker->paragraph;
     }
 
-    public static function getById(?int $id = null): User
+    public static function getById(?int $id = null): Template
     {
         if ($id !== null) {
             return new self(['id' => $id]);
