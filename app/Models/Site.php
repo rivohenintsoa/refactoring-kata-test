@@ -5,24 +5,20 @@ namespace App\Models;
 use Faker\Factory as FakerFactory;
 
 
-class User
+class Site
 {
     public $id;
-    public $firstname;
-    public $lastname;
-    public $email;
+    public $url;
 
     public function __construct(array $attributes = [])
     {
         $faker = FakerFactory::create();
 
         $this->id = $attributes['id'] ?? $faker->randomNumber();
-        $this->firstname = $attributes['firstname'] ?? $faker->firstName;
-        $this->lastname = $attributes['lastname'] ?? $faker->lastName;
-        $this->email = $attributes['email'] ?? $faker->email;
+        $this->url = $attributes['url'] ?? $faker->url;
     }
 
-    public static function getById(?int $id = null): User
+    public static function getById(?int $id = null): Site
     {
         if ($id !== null) {
             return new self(['id' => $id]);
